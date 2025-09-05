@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main(){
+    int arr[100], n=0, choice, i, val, pos;
+    do{
+        printf("1.Crear 2.Insertar 3.Buscar 4.Eliminar 5.Salir\n");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+                printf("Cuantos? "); scanf("%d",&n);
+                for(i=0;i<n;i++) scanf("%d",&arr[i]);
+                break;
+            case 2:
+                if(n<100){ scanf("%d",&val); arr[n++]=val; }
+                break;
+            case 3:
+                scanf("%d",&val);
+                pos=-1;
+                for(i=0;i<n;i++) if(arr[i]==val) pos=i;
+                if(pos==-1) printf("No encontrado\n");
+                else printf("Encontrado en pos %d\n", pos);
+                break;
+            case 4:
+                scanf("%d",&val);
+                for(i=0;i<n;i++) if(arr[i]==val){
+                    for(pos=i;pos<n-1;pos++) arr[pos]=arr[pos+1];
+                    n--; break;
+                }
+                break;
+        }
+    }while(choice!=5);
+    return 0;
+}
