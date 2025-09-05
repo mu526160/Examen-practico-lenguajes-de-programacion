@@ -1,0 +1,40 @@
+program MenuArray;
+var arr: array[1..100] of Integer;
+    n, choice, i, val, pos: Integer;
+begin
+  n := 0;
+  repeat
+    Writeln('1.Crear 2.Insertar 3.Buscar 4.Eliminar 5.Salir');
+    Readln(choice);
+    case choice of
+      1: begin
+           Write('Cuantos? '); Readln(n);
+           for i:=1 to n do Readln(arr[i]);
+         end;
+      2: begin
+           if n<100 then
+           begin
+             Inc(n); Readln(arr[n]);
+           end;
+         end;
+      3: begin
+           Readln(val);
+           pos:=0;
+           for i:=1 to n do
+             if arr[i]=val then pos:=i;
+           if pos=0 then Writeln('No encontrado')
+           else Writeln('Encontrado en pos ', pos);
+         end;
+      4: begin
+           Readln(val);
+           for i:=1 to n do
+             if arr[i]=val then
+             begin
+               for pos:=i to n-1 do arr[pos]:=arr[pos+1];
+               Dec(n);
+               break;
+             end;
+         end;
+    end;
+  until choice=5;
+end.
