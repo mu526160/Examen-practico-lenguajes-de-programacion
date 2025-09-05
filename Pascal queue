@@ -1,0 +1,44 @@
+program Cola;
+type
+  TCola = record
+    arr: array[1..100] of Integer;
+    front, rear: Integer;
+  end;
+
+var c: TCola;
+
+procedure Init(var q: TCola);
+begin
+  q.front := 1; q.rear := 0;
+end;
+
+procedure Enqueue(var q: TCola; x: Integer);
+begin
+  if q.rear = 100 then
+    Writeln('Cola llena')
+  else
+  begin
+    Inc(q.rear);
+    q.arr[q.rear] := x;
+  end;
+end;
+
+procedure Dequeue(var q: TCola);
+begin
+  if q.front > q.rear then
+    Writeln('Cola vacia')
+  else
+  begin
+    Writeln('Dequeue: ', q.arr[q.front]);
+    Inc(q.front);
+  end;
+end;
+
+begin
+  Init(c);
+  Enqueue(c, 10);
+  Enqueue(c, 20);
+  Dequeue(c);
+  Dequeue(c);
+  Dequeue(c);
+end.
