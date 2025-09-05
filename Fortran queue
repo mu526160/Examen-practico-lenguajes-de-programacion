@@ -1,0 +1,36 @@
+program Cola
+  implicit none
+  integer, dimension(100) :: queue
+  integer :: front, rear, opcion, valor
+
+  front = 1
+  rear = 0
+
+  do
+     print *, "1. Enqueue  2. Dequeue  3. Salir"
+     read(*,*) opcion
+     select case (opcion)
+     case (1)
+        if (rear >= 100) then
+           print *, "Cola llena"
+        else
+           print *, "Ingrese valor:"
+           read(*,*) valor
+           rear = rear + 1
+           queue(rear) = valor
+           print *, "Se encolo:", valor
+        end if
+     case (2)
+        if (front > rear) then
+           print *, "Cola vacia"
+        else
+           print *, "Dequeue:", queue(front)
+           front = front + 1
+        end if
+     case (3)
+        exit
+     case default
+        print *, "Opcion invalida"
+     end select
+  end do
+end program Cola
