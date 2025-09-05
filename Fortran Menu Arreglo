@@ -1,0 +1,57 @@
+program MenuArreglo
+  implicit none
+  integer, dimension(100) :: arr
+  integer :: n, opcion, i, val, pos
+  logical :: encontrado
+
+  n = 0
+  do
+     print *, "1.Crear  2.Insertar  3.Buscar  4.Eliminar  5.Salir"
+     read(*,*) opcion
+     select case(opcion)
+     case(1)
+        print *, "Cantidad de elementos:"
+        read(*,*) n
+        print *, "Ingrese los valores:"
+        do i = 1, n
+           read(*,*) arr(i)
+        end do
+     case(2)
+        if (n < 100) then
+           print *, "Ingrese valor a insertar:"
+           read(*,*) val
+           n = n + 1
+           arr(n) = val
+        else
+           print *, "Arreglo lleno"
+        end if
+     case(3)
+        print *, "Valor a buscar:"
+        read(*,*) val
+        encontrado = .false.
+        do i = 1, n
+           if (arr(i) == val) then
+              print *, "Encontrado en posicion:", i
+              encontrado = .true.
+           end if
+        end do
+        if (.not. encontrado) print *, "No encontrado"
+     case(4)
+        print *, "Valor a eliminar:"
+        read(*,*) val
+        do i = 1, n
+           if (arr(i) == val) then
+              do pos = i, n-1
+                 arr(pos) = arr(pos+1)
+              end do
+              n = n - 1
+              exit
+           end if
+        end do
+     case(5)
+        exit
+     case default
+        print *, "Opcion invalida"
+     end select
+  end do
+end program MenuArreglo
