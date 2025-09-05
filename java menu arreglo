@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class MenuArray {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int[] arr = new int[100];
+        int n=0, choice, val, pos;
+        do{
+            System.out.println("1.Crear 2.Insertar 3.Buscar 4.Eliminar 5.Salir");
+            choice = sc.nextInt();
+            switch(choice){
+                case 1:
+                    System.out.print("Cuantos? ");
+                    n = sc.nextInt();
+                    for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+                    break;
+                case 2:
+                    if(n<100){ arr[n++]=sc.nextInt(); }
+                    break;
+                case 3:
+                    val=sc.nextInt(); pos=-1;
+                    for(int i=0;i<n;i++) if(arr[i]==val) pos=i;
+                    if(pos==-1) System.out.println("No encontrado");
+                    else System.out.println("Encontrado en pos "+pos);
+                    break;
+                case 4:
+                    val=sc.nextInt();
+                    for(int i=0;i<n;i++) if(arr[i]==val){
+                        for(pos=i;pos<n-1;pos++) arr[pos]=arr[pos+1];
+                        n--; break;
+                    }
+                    break;
+            }
+        }while(choice!=5);
+    }
+}
