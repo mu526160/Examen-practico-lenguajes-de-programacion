@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Cola {
+    static class Queue {
+        int[] arr = new int[100];
+        int front=0, rear=-1;
+
+        void enqueue(int x){
+            if(rear==arr.length-1) System.out.println("Cola llena");
+            else arr[++rear]=x;
+        }
+
+        void dequeue(){
+            if(front>rear) System.out.println("Cola vacia");
+            else System.out.println("Dequeue: " + arr[front++]);
+        }
+    }
+
+    public static void main(String[] args){
+        Queue q = new Queue();
+        q.enqueue(10);
+        q.enqueue(20);
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+    }
+}
